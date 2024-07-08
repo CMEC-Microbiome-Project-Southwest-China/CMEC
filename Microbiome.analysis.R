@@ -361,7 +361,7 @@ colnames(pco_species) <- c("Principal_Coordinate","Microbiome_feature","Type",
                            "Spearman_Correlation","Pvalue","FDR")
 # write
 write.csv(pco_species,row.names = F,
-          file = "F:/宏基因组分析/MetaPhlAn/PCo_Species_Correlation.csv")
+          file = "~/MetaPhlAn/PCo_Species_Correlation.csv")
 
 
 ## PCoA plot 
@@ -617,7 +617,7 @@ gg <- ggplot(data=plot.data, aes(x=Taxon,y=Abundance,color=Cluster)) +
    geom_half_violin(aes(x=Taxon,y=Abundance,split=Cluster,fill=Cluster),
                     position = "identity",fill="white",linewidth=1)+
    geom_jitter(alpha=0.25,position=position_jitterdodge(jitter.width=0.15,
-                                                        jitter.height=0,dodge.width=0.15))+ #散点
+                                                        jitter.height=0,dodge.width=0.15))+ 
    geom_half_boxplot(data = dplyr::filter(plot.data,Cluster=="1"),aes(Taxon,Abundance),
                      width = 0.1,side = "l",outlier.colour = NA) +
    geom_half_boxplot(data = dplyr::filter(plot.data,Cluster=="2"),aes(Taxon,Abundance),
@@ -959,13 +959,13 @@ do_accumulation = function(MetaPhlAn,type="O"){
    return(Curves)
 }
 
-# 种水平 
+# Species
 Curves_S <- do_accumulation(MetaPhlAn.result,type ="Species")
-# 属水平
+# Genus
 Curves_G <- do_accumulation(MetaPhlAn.result,type ="Genus")
-# 科水平
+# Family
 Curves_F <- do_accumulation(MetaPhlAn.result,type ="Family")
-# 合并
+# Combined
 MetaPhlAn_Curves_data <- rbind(Curves_S,Curves_G,Curves_F)
 MetaPhlAn_Curves_filter <- MetaPhlAn_Curves_data[MetaPhlAn_Curves_data$sites%in%c(1,2,4,8,10,20,30,40,50,
                                                                                   75,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,
@@ -1068,7 +1068,7 @@ Genus.sum <- rowSums(MetaPhlAn.G)
 Genus_T_RE <- iNEXT(Genus.sum, q=0,datatype ='abundance',knots = 200,
                       endpoint = sum(Genus.sum)*3)
 
-# ggplot2 绘图
+# ggplot2
 Genus_T_RE$iNextEst$size_based$m <- Genus_T_RE$iNextEst$size_based$m/sum(Genus.sum)*ncol(MetaPhlAn.G)
 View(Genus_T_RE$iNextEst$size_based)
 
