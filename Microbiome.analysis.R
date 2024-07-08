@@ -315,7 +315,7 @@ gg1 <- ggplot(Alpha_index,aes(x=Shannon)) +
    scale_y_continuous(expand=c(0,0))+
    theme_bw()+
    labs(x="Shannon diversity index",y="Frequency")+
-   theme(panel.grid = element_blank(),#去掉背景网格
+   theme(panel.grid = element_blank(),
          axis.title.x = element_text(size=14,family ="serif",face="bold"),
          axis.title.y = element_text(size=14,family ="serif",face="bold"),
          axis.text = element_text(size=12,family ="serif",face="bold"),
